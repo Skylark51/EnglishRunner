@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#121625" />
+  <meta name="description" content="영어 단어를 외우며 캐릭터를 남돌로 성장시키는 모바일 웹 게임" />
+  <title>English Runner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">PROJECT IDOL</p>
+        <h1>English Runner</h1>
+      </div>
+      <button class="icon-button" id="openInfo" aria-label="게임 설명 열기">?</button>
+    </header>
+
+    <main>
+      <section class="hero-card pixel-panel" aria-labelledby="characterTitle">
+        <div class="hero-head">
+          <div>
+            <p class="muted">내가 키우는 연습생</p>
+            <h2 id="characterTitle">영러너 01</h2>
+          </div>
+          <div class="day-chip">DAY <strong id="dayCount">1</strong></div>
+        </div>
+
+        <div class="stage" aria-label="런닝머신 위에서 달리는 캐릭터">
+          <div class="window-scene" aria-hidden="true">
+            <span class="cloud cloud-a"></span>
+            <span class="cloud cloud-b"></span>
+            <span class="building building-a"></span>
+            <span class="building building-b"></span>
+            <span class="building building-c"></span>
+          </div>
+
+          <div class="character" id="character" aria-hidden="true">
+            <span class="sweat sweat-a"></span>
+            <span class="sweat sweat-b"></span>
+            <span class="hair"></span>
+            <span class="head"></span>
+            <span class="glasses glasses-left"></span>
+            <span class="glasses glasses-right"></span>
+            <span class="glasses-bridge"></span>
+            <span class="body"></span>
+            <span class="arm arm-left"></span>
+            <span class="arm arm-right"></span>
+            <span class="leg leg-left"></span>
+            <span class="leg leg-right"></span>
+            <span class="shoe shoe-left"></span>
+            <span class="shoe shoe-right"></span>
+          </div>
+
+          <div class="treadmill" aria-hidden="true">
+            <span class="treadmill-screen"></span>
+            <span class="treadmill-handle"></span>
+            <span class="treadmill-belt"></span>
+            <span class="belt-line belt-line-a"></span>
+            <span class="belt-line belt-line-b"></span>
+          </div>
+
+          <div class="stage-copy">
+            <span class="status-dot"></span>
+            <span id="conditionText">오늘도 달릴 준비 완료</span>
+          </div>
+        </div>
+
+        <div class="goal-row">
+          <div>
+            <span class="muted">현재 단계</span>
+            <strong id="phaseLabel">초보 연습생</strong>
+          </div>
+          <div class="goal-meter" aria-label="데뷔 진행률">
+            <span id="debutProgress"></span>
+          </div>
+          <strong id="debutPercent">8%</strong>
+        </div>
+      </section>
+
+      <section class="stats-grid" aria-label="캐릭터 상태">
+        <article class="stat-card pixel-panel">
+          <div class="stat-icon">⚖</div>
+          <div>
+            <span>몸무게</span>
+            <strong><span id="weightValue">98.4</span> kg</strong>
+            <small id="weightDelta">목표 72.0 kg</small>
+          </div>
+        </article>
+
+        <article class="stat-card pixel-panel">
+          <div class="stat-icon">✦</div>
+          <div class="stat-copy">
+            <span>피부 상태</span>
+            <strong id="skinLabel">관리 필요</strong>
+            <div class="mini-meter" aria-label="피부 상태 점수">
+              <span id="skinMeter"></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="stat-card pixel-panel">
+          <div class="stat-icon">🔥</div>
+          <div>
+            <span>연속 학습</span>
+            <strong><span id="streakValue">0</span>일</strong>
+            <small>오늘 학습 전</small>
+          </div>
+        </article>
+
+        <article class="stat-card pixel-panel">
+          <div class="stat-icon">A+</div>
+          <div>
+            <span>외운 단어</span>
+            <strong><span id="wordCount">0</span>개</strong>
+            <small>데뷔까지 10,000개</small>
+          </div>
+        </article>
+      </section>
+
+      <section class="return-card pixel-panel" id="returnCard" hidden>
+        <div>
+          <p class="eyebrow danger">RETURN REPORT</p>
+          <h2>자리를 비운 사이 상태가 변했습니다.</h2>
+          <p id="returnMessage"></p>
+        </div>
+        <button class="text-button" id="closeReturn">확인</button>
+      </section>
+
+      <section class="mission-card pixel-panel">
+        <div class="mission-copy">
+          <p class="eyebrow">TODAY'S MISSION</p>
+          <h2>단어 20개를 외우고 2 km 달리기</h2>
+          <div class="mission-progress">
+            <span id="missionProgress"></span>
+          </div>
+          <p><strong id="missionWords">0</strong> / 20 words</p>
+        </div>
+        <button class="primary-button" id="startStudy">
+          <span>단어 러닝 시작</span>
+          <small>약 3분</small>
+        </button>
+      </section>
+
+      <section class="care-row" aria-label="관리 메뉴">
+        <button class="care-button pixel-panel" data-action="skin">
+          <span class="care-icon">◈</span>
+          <span>피부관리</span>
+          <small>상태 회복</small>
+        </button>
+        <button class="care-button pixel-panel" data-action="closet">
+          <span class="care-icon">▣</span>
+          <span>옷장</span>
+          <small>준비 중</small>
+        </button>
+        <button class="care-button pixel-panel" data-action="profile">
+          <span class="care-icon">★</span>
+          <span>성장 기록</span>
+          <small>변화 확인</small>
+        </button>
+      </section>
+    </main>
+
+    <nav class="bottom-nav" aria-label="하단 메뉴">
+      <button class="nav-item active" data-nav="home"><span>⌂</span>홈</button>
+      <button class="nav-item" data-nav="study"><span>ABC</span>학습</button>
+      <button class="nav-item" data-nav="care"><span>✦</span>관리</button>
+      <button class="nav-item" data-nav="shop"><span>▦</span>상점</button>
+    </nav>
+  </div>
+
+  <dialog class="game-dialog" id="studyDialog">
+    <form method="dialog" class="dialog-panel pixel-panel">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">WORD RUN 01</p>
+          <h2 id="questionWord">abandon</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="닫기">×</button>
+      </div>
+      <p class="question-copy">가장 알맞은 뜻을 고르세요.</p>
+      <div class="answer-list" id="answerList"></div>
+      <p class="feedback" id="feedback" aria-live="polite"></p>
+      <button type="button" class="secondary-button" id="nextWord" hidden>다음 단어</button>
+    </form>
+  </dialog>
+
+  <dialog class="game-dialog" id="infoDialog">
+    <form method="dialog" class="dialog-panel pixel-panel">
+      <div class="dialog-head">
+        <div>
+          <p class="eyebrow">GAME RULE</p>
+          <h2>꾸준히 접속해야 합니다.</h2>
+        </div>
+        <button class="icon-button" value="cancel" aria-label="닫기">×</button>
+      </div>
+      <p class="question-copy">하루 이상 학습하지 않으면 캐릭터의 체중이 조금씩 늘고 피부 상태가 악화됩니다. 단어를 외우고 관리 활동을 하면 다시 회복할 수 있습니다.</p>
+      <button type="button" class="secondary-button" id="simulateDay">하루 미접속 체험</button>
+      <button type="button" class="text-button reset-button" id="resetData">프로토타입 데이터 초기화</button>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>
