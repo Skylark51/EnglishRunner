@@ -4,207 +4,111 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#eaf7ff" />
-  <meta name="description" content="영어 단어를 외우며 캐릭터를 남돌로 성장시키는 모바일 웹 게임" />
-  <title>English Runner</title>
+  <meta name="description" content="영어 단어를 외우며 연습생을 아이돌로 성장시키는 모바일 웹 게임" />
+  <title>English Runner — Project Debut</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="stylesheet" href="onboarding.css" />
 </head>
 <body>
   <div class="app-shell">
     <header class="topbar">
-      <div>
-        <p class="eyebrow">PROJECT IDOL</p>
-        <h1>English Runner</h1>
+      <button class="brand-button" type="button" data-go="home" aria-label="홈으로 이동">
+        <span class="brand-mark" aria-hidden="true">ER</span>
+        <span><small>PROJECT DEBUT</small><strong>English Runner</strong></span>
+      </button>
+      <div class="topbar-actions">
+        <div class="talent-chip" aria-label="보유 달란트"><span aria-hidden="true">✦</span><strong id="talentValue">120</strong></div>
+        <button class="icon-button" id="openInfo" type="button" aria-label="게임 안내 열기">?</button>
       </div>
-      <button class="icon-button" id="openInfo" aria-label="게임 설명 열기">?</button>
     </header>
 
-    <main>
-      <section class="hero-card pixel-panel" aria-labelledby="characterTitle">
-        <div class="hero-head">
-          <div>
-            <p class="muted">내가 키우는 연습생</p>
-            <h2 id="characterTitle">영러너 01</h2>
-          </div>
+    <main id="appMain">
+      <section class="app-view is-active" data-view="home" aria-labelledby="homeTitle">
+        <div class="section-heading home-heading">
+          <div><p class="eyebrow">DIRECTOR'S ROOM</p><h1 id="homeTitle"><span id="characterTitle">영러너 01</span>의 데뷔 프로젝트</h1></div>
           <div class="day-chip">DAY <strong id="dayCount">1</strong></div>
         </div>
 
-        <div class="stage" aria-label="런닝머신 위에서 달리는 캐릭터">
-          <div class="window-scene" aria-hidden="true">
-            <span class="cloud cloud-a"></span>
-            <span class="cloud cloud-b"></span>
-            <span class="building building-a"></span>
-            <span class="building building-b"></span>
-            <span class="building building-c"></span>
-          </div>
-
-          <div class="character" id="character" aria-hidden="true">
-            <span class="sweat sweat-a"></span>
-            <span class="sweat sweat-b"></span>
-            <span class="hair"></span>
-            <span class="head"></span>
-            <span class="glasses glasses-left"></span>
-            <span class="glasses glasses-right"></span>
-            <span class="glasses-bridge"></span>
-            <span class="body"></span>
-            <span class="arm arm-left"></span>
-            <span class="arm arm-right"></span>
-            <span class="leg leg-left"></span>
-            <span class="leg leg-right"></span>
-            <span class="shoe shoe-left"></span>
-            <span class="shoe shoe-right"></span>
-          </div>
-
-          <div class="treadmill" aria-hidden="true">
-            <span class="treadmill-screen"></span>
-            <span class="treadmill-handle"></span>
-            <span class="treadmill-belt"></span>
-            <span class="belt-line belt-line-a"></span>
-            <span class="belt-line belt-line-b"></span>
-          </div>
-
-          <div class="stage-copy">
-            <span class="status-dot"></span>
-            <span id="conditionText">오늘도 달릴 준비 완료</span>
-          </div>
-        </div>
-
-        <div class="goal-row">
-          <div>
-            <span class="muted">현재 단계</span>
-            <strong id="phaseLabel">초보 연습생</strong>
-          </div>
-          <div class="goal-meter" aria-label="데뷔 진행률">
-            <span id="debutProgress"></span>
-          </div>
-          <strong id="debutPercent">8%</strong>
-        </div>
-      </section>
-
-      <section class="stats-grid" aria-label="캐릭터 상태">
-        <article class="stat-card pixel-panel">
-          <div class="stat-icon">⚖</div>
-          <div>
-            <span>몸무게</span>
-            <strong><span id="weightValue">98.4</span> kg</strong>
-            <small id="weightDelta">목표 72.0 kg</small>
-          </div>
+        <article class="director-note card card--sunny">
+          <span class="note-icon" aria-hidden="true">✦</span>
+          <div><strong>디렉터 메모</strong><p>재능은 충분합니다. 오늘의 루틴을 정리해 무대에 한 걸음 더 가까이 데려가세요.</p></div>
         </article>
 
-        <article class="stat-card pixel-panel">
-          <div class="stat-icon">✦</div>
-          <div class="stat-copy">
-            <span>피부 상태</span>
-            <strong id="skinLabel">관리 필요</strong>
-            <div class="mini-meter" aria-label="피부 상태 점수">
-              <span id="skinMeter"></span>
+        <section class="character-card card" aria-labelledby="traineeStateTitle">
+          <div class="card-heading">
+            <div><p class="overline">MY TRAINEE</p><h2 id="traineeStateTitle">현재 연습생 상태</h2></div>
+            <span class="status-pill" id="phaseLabel">원석 연습생</span>
+          </div>
+          <div class="character-stage" aria-label="추후 픽셀아트 캐릭터가 들어갈 영역">
+            <div class="practice-room" aria-hidden="true"><span class="practice-room__sun"></span><span class="practice-room__window"></span><span class="practice-room__mirror"></span><span class="practice-room__floor"></span></div>
+            <div class="character-slot" id="characterSlot" aria-hidden="true">
+              <span class="character-layer character-layer--body"></span><span class="character-layer character-layer--skin"></span><span class="character-layer character-layer--outfit"></span><span class="character-layer character-layer--hair"></span><span class="character-layer character-layer--accessory"></span><span class="character-layer character-layer--effect"></span><span class="placeholder-label">PIXEL<br />CHARACTER</span>
             </div>
+            <div class="condition-banner"><span class="condition-dot"></span><span id="conditionText">아직 관리가 많이 필요합니다.</span></div>
           </div>
-        </article>
+          <div class="debut-row"><div><span>데뷔 준비도</span><strong id="debutPercent">8%</strong></div><div class="progress-track" aria-label="데뷔 준비도"><span id="debutProgress" style="width: 8%"></span></div></div>
+        </section>
 
-        <article class="stat-card pixel-panel">
-          <div class="stat-icon">🔥</div>
-          <div>
-            <span>연속 학습</span>
-            <strong><span id="streakValue">0</span>일</strong>
-            <small>오늘 학습 전</small>
+        <section class="status-section" aria-labelledby="statusTitle">
+          <div class="section-subheading"><h2 id="statusTitle">컨디션 보드</h2><button class="text-link" type="button" data-go="care">관리하러 가기</button></div>
+          <div class="status-grid">
+            <article class="metric-card metric-card--coral"><span class="metric-icon" aria-hidden="true">W</span><span>현재 몸무게</span><strong><span id="weightValue">98.4</span> kg</strong><small id="weightDelta">목표 72.0 kg</small></article>
+            <article class="metric-card metric-card--mint"><span class="metric-icon" aria-hidden="true">B</span><span>체형 관리</span><strong id="bodyLabel">관리 필요</strong><div class="mini-track"><span id="bodyMeter"></span></div></article>
+            <article class="metric-card metric-card--pink"><span class="metric-icon" aria-hidden="true">S</span><span>피부 컨디션</span><strong id="skinLabel">관리 필요</strong><div class="mini-track"><span id="skinMeter"></span></div></article>
+            <article class="metric-card metric-card--blue"><span class="metric-icon" aria-hidden="true">V</span><span>보컬 컨디션</span><strong id="vocalLabel">기초 단계</strong><div class="mini-track"><span id="vocalMeter"></span></div></article>
+            <article class="metric-card metric-card--lavender"><span class="metric-icon" aria-hidden="true">P</span><span>퍼포먼스</span><strong id="performanceLabel">기초 단계</strong><div class="mini-track"><span id="performanceMeter"></span></div></article>
+            <article class="metric-card metric-card--yellow"><span class="metric-icon" aria-hidden="true">A+</span><span>영어 실력</span><strong><span id="wordCount">0</span> words</strong><div class="mini-track"><span id="englishMeter"></span></div></article>
+            <article class="metric-card metric-card--sky metric-card--wide"><span class="metric-icon" aria-hidden="true">D</span><span>자기관리</span><strong><span id="streakValue">0</span>일 연속 루틴</strong><div class="mini-track"><span id="disciplineMeter"></span></div></article>
           </div>
-        </article>
+        </section>
 
-        <article class="stat-card pixel-panel">
-          <div class="stat-icon">A+</div>
-          <div>
-            <span>외운 단어</span>
-            <strong><span id="wordCount">0</span>개</strong>
-            <small>데뷔까지 10,000개</small>
-          </div>
-        </article>
+        <section class="return-card card" id="returnCard" hidden><div class="return-icon" aria-hidden="true">↻</div><div><p class="overline overline--danger">RETURN REPORT</p><h2>잠시 쉬는 동안 컨디션이 달라졌습니다.</h2><p id="returnMessage"></p></div><button class="small-button" id="closeReturn" type="button">확인</button></section>
+
+        <section class="directive-card card" aria-labelledby="directiveTitle">
+          <div class="card-heading"><div><p class="overline">TODAY'S DIRECTIVE</p><h2 id="directiveTitle">오늘의 디렉터 지시</h2></div><span class="completion-ring"><strong id="routineDone">0</strong>/6</span></div>
+          <div class="directive-list" id="directiveList"></div>
+          <button class="primary-button" type="button" data-go="training"><span>오늘의 훈련 시작</span><small>데뷔 루틴 확인</small></button>
+        </section>
       </section>
 
-      <section class="return-card pixel-panel" id="returnCard" hidden>
-        <div>
-          <p class="eyebrow danger">RETURN REPORT</p>
-          <h2>자리를 비운 사이 상태가 변했습니다.</h2>
-          <p id="returnMessage"></p>
+      <section class="app-view" data-view="training" aria-labelledby="trainingTitle">
+        <div class="section-heading"><div><p class="eyebrow">TRAINING CENTER</p><h1 id="trainingTitle">오늘의 훈련을 선택하세요</h1></div></div>
+        <article class="page-hero card card--blue"><div><span class="page-hero__tag">DIRECTOR PLAN</span><h2>공부와 자기관리를 균형 있게</h2><p>한 가지 능력만으로는 데뷔할 수 없습니다. 여러 훈련을 완료하면 데뷔 루틴 보너스를 받습니다.</p></div><span class="page-hero__symbol" aria-hidden="true">☆</span></article>
+        <div class="content-group">
+          <div class="section-subheading"><h2>영어 훈련</h2><span>6 PROGRAMS</span></div>
+          <div class="training-list">
+            <button class="training-card card" type="button" data-training="pt"><span class="training-icon training-icon--yellow">PT</span><span class="training-copy"><strong>단어 PT</strong><small>새로운 단어를 차분하게 학습</small></span><span class="training-meta"><b>5분</b><small>+12 ✦</small></span></button>
+            <button class="training-card card" type="button" data-training="run"><span class="training-icon training-icon--coral">RUN</span><span class="training-copy"><strong>개별 러닝</strong><small>4지선다 스피드 퀴즈</small></span><span class="training-meta"><b>3분</b><small>+20 ✦</small></span></button>
+            <button class="training-card card" type="button" data-go="retake"><span class="training-icon training-icon--lavender">RE</span><span class="training-copy"><strong>리테이크</strong><small>자주 틀리는 단어 교정</small></span><span class="training-meta"><b id="retakeCountTraining">0개</b><small>+15 ✦</small></span></button>
+            <button class="training-card card is-locked" type="button" data-placeholder="표현 트레이닝"><span class="training-icon training-icon--mint">EX</span><span class="training-copy"><strong>표현 트레이닝</strong><small>숙어와 표현 암기</small></span><span class="training-meta"><b>준비 중</b><small>LOCK</small></span></button>
+            <button class="training-card card is-locked" type="button" data-placeholder="스크립트 트레이닝"><span class="training-icon training-icon--blue">SC</span><span class="training-copy"><strong>스크립트 트레이닝</strong><small>수능 지문과 핵심 문장 필사</small></span><span class="training-meta"><b>준비 중</b><small>LOCK</small></span></button>
+            <button class="training-card card is-locked" type="button" data-placeholder="인이어 트레이닝"><span class="training-icon training-icon--pink">IN</span><span class="training-copy"><strong>인이어 트레이닝</strong><small>단어와 문장 듣기</small></span><span class="training-meta"><b>준비 중</b><small>LOCK</small></span></button>
+          </div>
         </div>
-        <button class="text-button" id="closeReturn">확인</button>
+        <div class="content-group"><div class="section-subheading"><h2>자기관리 훈련</h2><span>3 PROGRAMS</span></div><div class="care-grid"><button class="care-card card care-card--skin" type="button" data-care="skin"><span aria-hidden="true">✦</span><strong>피부관리</strong><small>피부 컨디션 회복</small><b>+8</b></button><button class="care-card card care-card--vocal" type="button" data-care="vocal"><span aria-hidden="true">♪</span><strong>발성연습</strong><small>보컬 컨디션 상승</small><b>+8</b></button><button class="care-card card care-card--dance" type="button" data-care="dance"><span aria-hidden="true">◆</span><strong>춤연습</strong><small>퍼포먼스 상승</small><b>+8</b></button></div></div>
       </section>
 
-      <section class="mission-card pixel-panel">
-        <div class="mission-copy">
-          <p class="eyebrow">TODAY'S MISSION</p>
-          <h2>단어 20개를 외우고 2 km 달리기</h2>
-          <div class="mission-progress">
-            <span id="missionProgress"></span>
-          </div>
-          <p><strong id="missionWords">0</strong> / 20 words</p>
-        </div>
-        <button class="primary-button" id="startStudy">
-          <span>단어 러닝 시작</span>
-          <small>약 3분</small>
-        </button>
-      </section>
+      <section class="app-view" data-view="speed" aria-labelledby="speedTitle"><button class="back-button" type="button" data-go="training">← 훈련 선택</button><div class="section-heading"><div><p class="eyebrow">TREADMILL LEVEL</p><h1 id="speedTitle">런닝머신 속도를 선택하세요</h1></div></div><p class="page-description">속도는 단어 수준과 보상 배율을 의미합니다. 선택 후 개별 러닝을 시작합니다.</p><div class="speed-list" id="speedList"></div><button class="primary-button sticky-action" id="beginRun" type="button"><span><b id="selectedSpeedText">6 km/h</b>로 러닝 시작</span><small id="selectedLevelText">중등 · 파워 워킹</small></button></section>
 
-      <section class="care-row" aria-label="관리 메뉴">
-        <button class="care-button pixel-panel" data-action="skin">
-          <span class="care-icon">◈</span>
-          <span>피부관리</span>
-          <small>상태 회복</small>
-        </button>
-        <button class="care-button pixel-panel" data-action="closet">
-          <span class="care-icon">▣</span>
-          <span>옷장</span>
-          <small>준비 중</small>
-        </button>
-        <button class="care-button pixel-panel" data-action="profile">
-          <span class="care-icon">★</span>
-          <span>성장 기록</span>
-          <small>변화 확인</small>
-        </button>
-      </section>
+      <section class="app-view" data-view="pt" aria-labelledby="ptTitle"><button class="back-button" type="button" data-go="training">← 훈련 선택</button><div class="workout-header"><div><p class="eyebrow">WORD PT</p><h1 id="ptTitle">단어 PT</h1></div><span class="counter-chip"><b id="ptIndex">1</b>/<span id="ptTotal">8</span></span></div><div class="progress-track progress-track--large"><span id="ptProgress"></span></div><article class="word-study-card card"><div class="word-tag-row"><span id="ptLevel">중등</span><span id="ptCategory">verb</span></div><h2 id="ptWord">abandon</h2><button class="pronunciation-button" type="button" id="playPronunciation" aria-label="발음 재생 준비 중">🔊 <span id="ptPronunciation">/əˈbændən/</span></button><div class="meaning-block"><span>대표 뜻</span><strong id="ptMeaning">포기하다</strong></div><div class="example-block"><p id="ptExampleEn">Do not abandon your dream.</p><small id="ptExampleKo">네 꿈을 포기하지 마라.</small></div></article><div class="pt-actions"><button class="secondary-button" id="reviewWord" type="button">다시 볼래요</button><button class="primary-button primary-button--inline" id="rememberWord" type="button">기억했어요</button></div><div class="pager-row"><button type="button" id="previousPt">이전</button><button type="button" id="nextPt">다음</button></div></section>
+
+      <section class="app-view run-view" data-view="run" aria-labelledby="runTitle"><div class="run-topline"><button class="pause-button" id="pauseRun" type="button" aria-label="러닝 일시정지">Ⅱ</button><div><span id="runLevel">중등</span><strong id="runSpeed">6 km/h</strong></div><div><span>COMBO</span><strong id="comboValue">0</strong></div></div><div class="progress-track progress-track--large"><span id="runProgress"></span></div><div class="run-character-slot" aria-label="추후 러닝 애니메이션이 들어갈 영역"><div class="runner-placeholder"><span>RUN<br />SPRITE</span></div><div class="treadmill-placeholder" aria-hidden="true"><span></span><i></i></div></div><div class="run-question"><p><span id="runQuestionIndex">1</span> / <span id="runQuestionTotal">8</span></p><h1 id="runTitle">abandon</h1><small>가장 알맞은 한글 뜻을 선택하세요.</small></div><div class="run-feedback" id="runFeedback" aria-live="polite"></div><div class="choice-grid" id="choiceGrid"></div></section>
+
+      <section class="app-view" data-view="result" aria-labelledby="resultTitle"><div class="result-hero card"><span class="result-badge" aria-hidden="true">★</span><p class="eyebrow">RUN COMPLETE</p><h1 id="resultTitle">오늘도 데뷔에 한 걸음 가까워졌습니다.</h1><p id="resultComment">약점이 확인되었습니다. 다음 훈련에서 바로 교정할 수 있습니다.</p></div><div class="result-grid"><article class="result-stat"><span>총 문제</span><strong id="resultTotal">8</strong></article><article class="result-stat"><span>정답</span><strong id="resultCorrect">0</strong></article><article class="result-stat"><span>정답률</span><strong id="resultAccuracy">0%</strong></article><article class="result-stat"><span>평균 응답</span><strong id="resultResponse">0.0s</strong></article><article class="result-stat"><span>최고 콤보</span><strong id="resultCombo">0</strong></article><article class="result-stat"><span>러닝 거리</span><strong id="resultDistance">0.0km</strong></article></div><article class="reward-card card"><div><span>이번 훈련 보상</span><strong>+<b id="resultTalent">0</b> 달란트</strong></div><div><span>리테이크 추가</span><strong><b id="resultRetakes">0</b> words</strong></div><div><span>체형 관리</span><strong id="resultBodyChange">+1</strong></div></article><div class="stack-actions"><button class="primary-button" type="button" data-go="retake"><span>리테이크 확인</span><small>약점 교정</small></button><button class="secondary-button" type="button" data-go="home">홈으로 돌아가기</button></div></section>
+
+      <section class="app-view" data-view="retake" aria-labelledby="retakeTitle"><div class="section-heading"><div><p class="eyebrow">RETAKE ROOM</p><h1 id="retakeTitle">완벽한 무대를 위해 다시 한 번</h1></div></div><article class="page-hero card card--lavender"><div><span class="page-hero__tag">CORRECTION TRAINING</span><h2>오늘 리테이크가 필요한 단어</h2><p><strong id="retakeCountHero">0</strong>개의 약점 단어가 모여 있습니다.</p></div><span class="page-hero__symbol" aria-hidden="true">↻</span></article><div class="retake-toolbar card"><label><input type="checkbox" id="selectAllRetakes" /> 전체 선택</label><button class="small-button" id="startSelectedRetake" type="button">선택 훈련</button></div><div class="retake-list" id="retakeList"></div><button class="primary-button" id="quickRetake" type="button"><span>빠른 리테이크 시작</span><small>전체 약점 단어</small></button><article class="passed-card card"><div><span>리테이크 통과 기록</span><strong id="passedRetakes">0 words</strong></div><p>연속 정답으로 안정화된 단어가 여기에 기록됩니다.</p></article></section>
+
+      <section class="app-view" data-view="care" aria-labelledby="careTitle"><div class="section-heading"><div><p class="eyebrow">SELF MANAGEMENT</p><h1 id="careTitle">무대에 서기 위한 자기관리</h1></div></div><div class="care-program-list"><article class="care-program card care-program--skin"><div class="care-program__head"><span>✦</span><div><h2>피부관리</h2><p>현재 피부 상태 <strong id="careSkinValue">62</strong>/100</p></div></div><div class="progress-track"><span id="careSkinMeter"></span></div><div class="activity-chips"><span>세안 루틴</span><span>복습 5개</span><span>관리 아이템</span></div><button class="secondary-button" type="button" data-care="skin">오늘 피부관리 완료</button></article><article class="care-program card care-program--vocal"><div class="care-program__head"><span>♪</span><div><h2>발성연습</h2><p>현재 보컬 컨디션 <strong id="careVocalValue">42</strong>/100</p></div></div><div class="progress-track"><span id="careVocalMeter"></span></div><div class="activity-chips"><span>발음 듣기</span><span>강세 확인</span><span>쉐도잉</span></div><button class="secondary-button" type="button" data-care="vocal">오늘 발성연습 완료</button></article><article class="care-program card care-program--dance"><div class="care-program__head"><span>◆</span><div><h2>춤연습</h2><p>현재 퍼포먼스 <strong id="carePerformanceValue">38</strong>/100</p></div></div><div class="progress-track"><span id="carePerformanceMeter"></span></div><div class="activity-chips"><span>문장 배열</span><span>영어 어순</span><span>리듬 훈련</span></div><button class="secondary-button" type="button" data-care="dance">오늘 춤연습 완료</button></article></div></section>
+
+      <section class="app-view" data-view="shop" aria-labelledby="shopTitle"><div class="section-heading"><div><p class="eyebrow">AGENCY SHOP</p><h1 id="shopTitle">달란트로 연습생을 지원하세요</h1></div></div><div class="shop-balance card"><span>보유 달란트</span><strong>✦ <b id="shopTalentValue">120</b></strong></div><div class="category-tabs" id="shopCategories" role="tablist" aria-label="상점 분류"></div><div class="shop-grid" id="shopGrid"></div></section>
     </main>
 
-    <nav class="bottom-nav" aria-label="하단 메뉴">
-      <button class="nav-item active" data-nav="home"><span>⌂</span>홈</button>
-      <button class="nav-item" data-nav="study"><span>ABC</span>학습</button>
-      <button class="nav-item" data-nav="care"><span>✦</span>관리</button>
-      <button class="nav-item" data-nav="shop"><span>▦</span>상점</button>
-    </nav>
+    <nav class="bottom-nav" aria-label="주요 메뉴"><button class="nav-item is-active" type="button" data-nav="home"><span aria-hidden="true">⌂</span><b>홈</b></button><button class="nav-item" type="button" data-nav="training"><span aria-hidden="true">▶</span><b>훈련</b></button><button class="nav-item" type="button" data-nav="retake"><span aria-hidden="true">↻</span><b>리테이크</b></button><button class="nav-item" type="button" data-nav="care"><span aria-hidden="true">✦</span><b>관리</b></button><button class="nav-item" type="button" data-nav="shop"><span aria-hidden="true">▦</span><b>상점</b></button></nav>
   </div>
 
-  <dialog class="game-dialog" id="studyDialog">
-    <form method="dialog" class="dialog-panel pixel-panel">
-      <div class="dialog-head">
-        <div>
-          <p class="eyebrow">WORD RUN 01</p>
-          <h2 id="questionWord">abandon</h2>
-        </div>
-        <button class="icon-button" value="cancel" aria-label="닫기">×</button>
-      </div>
-      <p class="question-copy">가장 알맞은 뜻을 고르세요.</p>
-      <div class="answer-list" id="answerList"></div>
-      <p class="feedback" id="feedback" aria-live="polite"></p>
-      <button type="button" class="secondary-button" id="nextWord" hidden>다음 단어</button>
-    </form>
-  </dialog>
-
-  <dialog class="game-dialog" id="infoDialog">
-    <form method="dialog" class="dialog-panel pixel-panel">
-      <div class="dialog-head">
-        <div>
-          <p class="eyebrow">GAME RULE</p>
-          <h2>꾸준히 접속해야 합니다.</h2>
-        </div>
-        <button class="icon-button" value="cancel" aria-label="닫기">×</button>
-      </div>
-      <p class="question-copy">하루 이상 학습하지 않으면 캐릭터의 체중이 조금씩 늘고 피부 상태가 악화됩니다. 단어를 외우고 관리 활동을 하면 다시 회복할 수 있습니다.</p>
-      <button type="button" class="secondary-button" id="simulateDay">하루 미접속 체험</button>
-      <button type="button" class="text-button reset-button" id="resetData">프로토타입 데이터 초기화</button>
-    </form>
-  </dialog>
-
+  <dialog class="game-dialog" id="infoDialog"><form method="dialog" class="dialog-panel card"><div class="dialog-heading"><div><p class="eyebrow">DIRECTOR GUIDE</p><h2>연습생 관리 원칙</h2></div><button class="icon-button" value="cancel" aria-label="닫기">×</button></div><p>영어 학습과 자기관리 훈련을 골고루 진행하면 연습생의 외형과 능력치가 성장합니다.</p><ul><li>학습 기록과 구매한 아이템은 영구적으로 보존됩니다.</li><li>한국 시간 자정 기준으로 훈련하지 않은 날의 현재 컨디션이 낮아집니다.</li><li>낮아진 컨디션은 다시 훈련하면 회복할 수 있습니다.</li></ul><button class="secondary-button" type="button" id="simulateDay">3일 미접속 상황 체험</button><button class="danger-button" type="button" id="resetData">프로토타입 데이터 초기화</button></form></dialog>
+  <dialog class="game-dialog" id="pauseDialog"><form method="dialog" class="dialog-panel card"><div class="dialog-heading"><div><p class="eyebrow">PAUSE</p><h2>러닝을 잠시 멈췄습니다.</h2></div></div><button class="primary-button" value="resume"><span>계속 달리기</span><small>현재 문제부터</small></button><button class="secondary-button" type="button" id="quitRun">훈련 종료</button></form></dialog>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script src="app.js"></script>
-  <script src="onboarding.js"></script>
+  <script src="game-data.js"></script><script src="app.js"></script><script src="onboarding.js"></script>
 </body>
 </html>
