@@ -76,7 +76,7 @@
 }
 
 [data-view="home"] .character-stage {
-  height: 202px;
+  height: 194px;
   margin-top: 8px;
   border-radius: 15px;
 }
@@ -193,6 +193,7 @@
   text-align: center;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 [data-view="home"] .metric-icon {
@@ -247,7 +248,7 @@
 
 [data-view="home"] .directive-card {
   display: grid;
-  grid-template-columns: 1fr auto;
+  grid-template-columns: minmax(0, 1fr) 118px;
   align-items: center;
   gap: 8px;
   min-height: 64px;
@@ -280,8 +281,8 @@
 }
 
 [data-view="home"] .directive-card .primary-button {
-  grid-column: 1 / -1;
-  min-height: 40px;
+  grid-column: auto;
+  min-height: 42px;
   margin-top: 0;
   padding: 0 11px;
   border-radius: 13px;
@@ -292,7 +293,7 @@
 }
 
 [data-view="home"] .directive-card .primary-button small {
-  font-size: .52rem;
+  display: none;
 }
 
 @media (max-width: 480px) {
@@ -353,7 +354,7 @@
   }
 
   [data-view="home"] .character-stage {
-    height: 184px;
+    height: 176px;
   }
 
   [data-view="home"] .character-slot {
@@ -384,7 +385,7 @@
   }
 
   [data-view="home"] .character-stage {
-    height: 184px;
+    height: 176px;
   }
 
   [data-view="home"] .metric-card > span:not(.metric-icon) {
