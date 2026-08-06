@@ -34,3 +34,19 @@ window.ENGLISH_RUNNER_DATA = Object.freeze({
     { id: 'mirror-wall', category: '연습실', name: '전면 연습 거울', price: 220, symbol: 'MR', condition: 'DAY 7' }
   ]
 });
+
+(() => {
+  const storageKey = 'englishRunner.player.v2';
+  try {
+    const state = JSON.parse(localStorage.getItem(storageKey));
+    if (!state?.lastProcessedDate || !state?.lastTrainingDate) return;
+    const completed = Object.keys(state.completedToday || {}).length;
+    if (completed > 0 || state.lastTrainingDate >= state.lastProcessedDate) return;
+    const [year, month, day] = state.lastProcessedDate.split('-').map(Number);
+    const previous = new Date(Date.UTC(year, month - 1, day) - 86400000);
+    state.lastTrainingDate = `${previous.getUTCFullYear()}-${String(previous.getUTCMonth() + 1).padStart(2, '0')}-${String(previous.getUTCDate()).padStart(2, '0')}`;
+    localStorage.setItem(storageKey, JSON.stringify(state));
+  } catch (error) {
+    console.warn('일일 상태 보정 데이터를 읽지 못했습니다.', error);
+  }
+})();
